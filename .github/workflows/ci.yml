@@ -1,0 +1,15 @@
+name: Test
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v6
+      - name: Native PowerShell tests
+        shell: pwsh
+        run: ./tests/run.ps1
+      - name: CLI help
+        shell: pwsh
+        run: ./integrity.ps1 --help
