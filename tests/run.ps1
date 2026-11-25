@@ -26,7 +26,7 @@ try {
     Write-Text (Join-Path $root 'nested space/[file].txt') 'bravo'
     $result = Test-IntegrityManifest $root $manifest
     Assert ($result.changed.Count -eq 1 -and $result.changed[0] -ceq 'nested space/[file].txt') 'same-length changes must be detected'
-    Remove-Item -LiteralPath (Join-Path $root '.hidden')
+    Remove-Item -LiteralPath (Join-Path $root '.hidden') -Force
     Write-Text (Join-Path $root 'extra') 'new'
     $result = Test-IntegrityManifest $root $manifest
     Assert ($result.missing.Count -eq 1 -and $result.added.Count -eq 1) 'missing and added paths must be distinct'
